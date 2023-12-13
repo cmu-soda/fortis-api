@@ -1,5 +1,6 @@
 package cmu.s3d.fortis.service
 
+import cmu.s3d.fortis.common.RobustificationResult
 import cmu.s3d.fortis.common.Spec
 import cmu.s3d.fortis.common.SpecType
 import cmu.s3d.fortis.common.SupervisoryOptions
@@ -25,6 +26,6 @@ interface RobustificationService : Remote {
         propSpecs: List<Spec>,
         options: SupervisoryOptions,
         outputFormat: SpecType
-    ): List<String>
+    ): List<RobustificationResult>
 }
 

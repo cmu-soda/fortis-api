@@ -15,3 +15,10 @@ data class SupervisoryOptions(
     val algorithm: Algorithms,
     val maxIter: Int
 ) : Serializable
+
+data class RobustificationResult(
+    val model: String,
+    val preferred: List<Word<String>>,
+    val controllable: List<String>,
+    val observable: List<String>
+) : Serializable
