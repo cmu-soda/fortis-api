@@ -44,7 +44,9 @@ interface WeakeningService : Remote {
     ): List<Word<String>>
 
     /**
-     * Weaken the given safety invariant with respect to the given examples.
+     * Weaken the given safety invariant with respect to the given examples. The safety invariant is in the form:
+     * [](a -> b) && [](c -> d), and both the antecedent and consequent should be conjunctions of atomic propositions.
+     * The weakening will first add conjunctions to the antecedent, and then remove conjunctions from the consequent.
      *
      * @param invariant the safety invariant
      * @param fluents the specification strings of the fluents in the invariant
@@ -59,4 +61,24 @@ interface WeakeningService : Remote {
         positiveExamples: List<Word<String>>,
         negativeExamples: List<Word<String>>
     ): List<String>
+
+    /**
+     * Weakens the given GR(1) invariant with respect to the given examples. The GR(1) invariant is in the form:
+     * [](a -> b) && [](c -> d), and the antecedent should be in CNF and the consequent should be in DNF.
+     *
+     * @param invariant the GR(1) invariant
+     * @param fluents the specification strings of the fluents in the invariant
+     * @param positiveExamples the positive example traces
+     * @param negativeExamples the negative example traces
+     * @param maxNumOfNode the maximum number of nodes in the learned LTL formula
+     * @return one possible weakened GR(1) invariant specifications
+     */
+    @Throws(RemoteException::class)
+    fun weakenGR1Invariant(
+        invariant: String,
+        fluents: List<String>,
+        positiveExamples: List<Word<String>>,
+        negativeExamples: List<Word<String>>,
+        maxNumOfNode: Int
+    ): String?
 }
