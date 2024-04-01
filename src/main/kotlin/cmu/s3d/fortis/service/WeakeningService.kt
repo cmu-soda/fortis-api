@@ -15,6 +15,7 @@ interface WeakeningService : Remote {
      * @param fluents the specification strings of the fluents in the invariant
      * @return the generated examples used for the inductive learning process.
      */
+    @Deprecated("Use generateExamplesFromTrace instead")
     @Throws(RemoteException::class)
     fun generateExamplesFromProgress(
         sysSpecs: List<Spec>,
