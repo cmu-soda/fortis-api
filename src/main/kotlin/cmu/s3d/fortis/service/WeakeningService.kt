@@ -33,6 +33,8 @@ interface WeakeningService : Remote {
      *              events that are not in the trace.
      * @param inputs the alphabet of the trace, which could be a subset of the system alphabet.
      * @param fluents the specification strings of the fluents in the invariant
+     * @param numOfAdditionalExamples the number of additional examples to generate. By default, it only generates
+     *                                examples that just cover all the states.
      * @return the generated examples used for the inductive learning process.
      */
     @Throws(RemoteException::class)
@@ -41,7 +43,8 @@ interface WeakeningService : Remote {
         envSpecs: List<Spec>,
         trace: Word<String>,
         inputs: Collection<String>,
-        fluents: List<String>
+        fluents: List<String>,
+        numOfAdditionalExamples: Int
     ): List<Word<String>>
 
     /**
