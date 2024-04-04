@@ -64,7 +64,7 @@ interface WeakeningService : Remote {
         fluents: List<String>,
         positiveExamples: List<Word<String>>,
         negativeExamples: List<Word<String>>
-    ): List<String>
+    ): String?
 
     /**
      * Weakens the given GR(1) invariant with respect to the given examples. The GR(1) invariant is in the form:
@@ -85,4 +85,13 @@ interface WeakeningService : Remote {
         negativeExamples: List<Word<String>>,
         maxNumOfNode: Int
     ): String?
+
+    /**
+     * Return the next solution of the weakening process. This should only be called after weakenSafetyInvariant or
+     * weakenGR1Invariant is called. It will find the next solution based on the current stored solution.
+     * FIXME: This is a temporary solution to allow the client to get the next solution. However, it is problematic
+     *        because it makes this service stateful.
+     */
+    @Throws(RemoteException::class)
+    fun nextSolution(): String?
 }
